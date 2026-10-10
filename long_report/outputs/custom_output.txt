@@ -1,0 +1,36 @@
+reading C:\Users\juha9\Documents\mas1004-assignment1\data\clean
+600 images, 4 classes, read in 18 s
+  cleaning_brush           150
+  hair_brush               150
+  shoe_brush               150
+  tooth_brush              150
+training on 480, testing on 120
+model has 11,178,564 parameters, 11,178,564 of them will be trained
+Epoch 1/15: train loss 1.5544, train acc 0.283, test loss 1.5127, test acc 0.292
+Epoch 2/15: train loss 1.4849, train acc 0.344, test loss 1.4339, test acc 0.383
+Epoch 3/15: train loss 1.4255, train acc 0.375, test loss 1.3812, test acc 0.433
+Epoch 4/15: train loss 1.3688, train acc 0.433, test loss 1.3304, test acc 0.450
+Epoch 5/15: train loss 1.3165, train acc 0.485, test loss 1.2884, test acc 0.475
+Epoch 6/15: train loss 1.2613, train acc 0.502, test loss 1.2491, test acc 0.492
+Epoch 7/15: train loss 1.2098, train acc 0.540, test loss 1.2116, test acc 0.500
+Epoch 8/15: train loss 1.1626, train acc 0.554, test loss 1.1748, test acc 0.533
+Epoch 9/15: train loss 1.1173, train acc 0.592, test loss 1.1400, test acc 0.542
+Epoch 10/15: train loss 1.0722, train acc 0.606, test loss 1.1081, test acc 0.542
+Epoch 11/15: train loss 1.0369, train acc 0.625, test loss 1.0774, test acc 0.567
+Epoch 12/15: train loss 1.0038, train acc 0.627, test loss 1.0495, test acc 0.583
+Epoch 13/15: train loss 0.9652, train acc 0.646, test loss 1.0226, test acc 0.583
+Epoch 14/15: train loss 0.9350, train acc 0.662, test loss 0.9976, test acc 0.592
+Epoch 15/15: train loss 0.8844, train acc 0.704, test loss 0.9719, test acc 0.608
+
+trained in 6.6 minutes
+train accuracy 72.5%
+test  accuracy 60.8%
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\custom_curves.png
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\custom_confusion.png
+worst_examples is not written yet (Problem 5), so there is no custom_worst.png this time
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\custom_model.pt
+
+One line for your experiment table:
+| custom | ImageNet | all layers | 15 | 2e-06 | 11,178,564 | 72.5% | 60.8% |
+
+To put this model on your web page: python src/export_web.py --tag custom

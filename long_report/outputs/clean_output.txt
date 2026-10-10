@@ -1,0 +1,31 @@
+reading C:\Users\juha9\Documents\mas1004-assignment1\data\clean
+548 images, 4 classes, read in 12 s
+  cleaning_brush           127
+  hair_brush               138
+  shoe_brush               137
+  tooth_brush              146
+training on 439, testing on 109
+model has 11,178,564 parameters, 11,178,564 of them will be trained
+Epoch 1/10: train loss 0.7565, train acc 0.681, test loss 0.3151, test acc 0.881
+Epoch 2/10: train loss 0.1174, train acc 0.977, test loss 0.1815, test acc 0.927
+Epoch 3/10: train loss 0.0301, train acc 1.000, test loss 0.1573, test acc 0.954
+Epoch 4/10: train loss 0.0154, train acc 1.000, test loss 0.1397, test acc 0.945
+Epoch 5/10: train loss 0.0092, train acc 1.000, test loss 0.1367, test acc 0.936
+Epoch 6/10: train loss 0.0078, train acc 1.000, test loss 0.1314, test acc 0.936
+Epoch 7/10: train loss 0.0055, train acc 1.000, test loss 0.1311, test acc 0.936
+Epoch 8/10: train loss 0.0079, train acc 1.000, test loss 0.1338, test acc 0.936
+Epoch 9/10: train loss 0.0042, train acc 1.000, test loss 0.1314, test acc 0.936
+Epoch 10/10: train loss 0.0064, train acc 1.000, test loss 0.1238, test acc 0.936
+
+trained in 3.7 minutes
+train accuracy 100.0%
+test  accuracy 93.6%
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\clean_curves.png
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\clean_confusion.png
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\clean_worst.png
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\clean_model.pt
+
+One line for your experiment table:
+| clean | ImageNet | all layers | 10 | 0.0001 | 11,178,564 | 100.0% | 93.6% |
+
+To put this model on your web page: python src/export_web.py --tag clean

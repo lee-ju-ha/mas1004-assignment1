@@ -1,0 +1,31 @@
+reading C:\Users\juha9\Documents\mas1004-assignment1\data\clean
+600 images, 4 classes, read in 17 s
+  cleaning_brush           150
+  hair_brush               150
+  shoe_brush               150
+  tooth_brush              150
+training on 480, testing on 120
+model has 11,178,564 parameters, 11,178,564 of them will be trained
+Epoch 1/10: train loss 1.1684, train acc 0.506, test loss 1.2848, test acc 0.392
+Epoch 2/10: train loss 0.7256, train acc 0.750, test loss 0.9116, test acc 0.558
+Epoch 3/10: train loss 0.4738, train acc 0.840, test loss 1.1799, test acc 0.600
+Epoch 4/10: train loss 0.2730, train acc 0.910, test loss 0.9031, test acc 0.683
+Epoch 5/10: train loss 0.1502, train acc 0.971, test loss 1.1756, test acc 0.608
+Epoch 6/10: train loss 0.1091, train acc 0.971, test loss 1.6169, test acc 0.592
+Epoch 7/10: train loss 0.0674, train acc 0.990, test loss 1.2652, test acc 0.658
+Epoch 8/10: train loss 0.0517, train acc 0.990, test loss 1.2325, test acc 0.625
+Epoch 9/10: train loss 0.0361, train acc 0.996, test loss 1.1225, test acc 0.675
+Epoch 10/10: train loss 0.0325, train acc 0.996, test loss 1.1116, test acc 0.650
+
+trained in 4.9 minutes
+train accuracy 99.6%
+test  accuracy 65.0%
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\scratch_curves.png
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\scratch_confusion.png
+worst_examples is not written yet (Problem 5), so there is no scratch_worst.png this time
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\scratch_model.pt
+
+One line for your experiment table:
+| scratch | random | all layers | 10 | 0.0001 | 11,178,564 | 99.6% | 65.0% |
+
+To put this model on your web page: python src/export_web.py --tag scratch

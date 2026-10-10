@@ -1,0 +1,20 @@
+class                    downloaded  removed   kept  other
+cleaning_brush                  150       23    127      0
+hair_brush                      150       12    138      0
+shoe_brush                      150       13    137      0
+tooth_brush                     150        4    146      0
+
+reasons
+    30  near copy; keeping the left-side representative for this duplicate group
+     6  no handle, does not meet the cleaning-brush rule
+     5  plastic body resembles the cleaning-brush category
+     2  identified as shoe brush, not cleaning brush
+     2  paint brush image or set includes paint brushes
+     2  does not match cleaning-brush shape rule: bristles too long/flat or too sparse
+     1  bristles are too thin for the cleaning-brush rule
+     1  shoe brush, not cleaning brush
+     1  bristles not visible; cannot verify hair-brush criteria
+     1  rubber piece, not brush bristles
+     1  bristles not visible; cannot verify toothbrush criteria
+
+"other" is images that are in data/raw but neither in data/clean nor removed with `clean.py remove`, for example ones you deleted by hand. Their reasons are not recorded.

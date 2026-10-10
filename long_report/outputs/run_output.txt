@@ -1,0 +1,31 @@
+reading C:\Users\juha9\Documents\mas1004-assignment1\data\clean
+600 images, 4 classes, read in 17 s
+  cleaning_brush           150
+  hair_brush               150
+  shoe_brush               150
+  tooth_brush              150
+training on 480, testing on 120
+model has 11,178,564 parameters, 11,178,564 of them will be trained
+Epoch 1/10: train loss 0.7277, train acc 0.731, test loss 0.3863, test acc 0.833
+Epoch 2/10: train loss 0.1275, train acc 0.965, test loss 0.2675, test acc 0.892
+Epoch 3/10: train loss 0.0349, train acc 0.998, test loss 0.2827, test acc 0.875
+Epoch 4/10: train loss 0.0216, train acc 0.998, test loss 0.2738, test acc 0.900
+Epoch 5/10: train loss 0.0160, train acc 0.996, test loss 0.2736, test acc 0.917
+Epoch 6/10: train loss 0.0097, train acc 0.998, test loss 0.2862, test acc 0.892
+Epoch 7/10: train loss 0.0088, train acc 0.998, test loss 0.2760, test acc 0.892
+Epoch 8/10: train loss 0.0101, train acc 0.996, test loss 0.2824, test acc 0.900
+Epoch 9/10: train loss 0.0112, train acc 0.996, test loss 0.2958, test acc 0.883
+Epoch 10/10: train loss 0.0079, train acc 0.998, test loss 0.3173, test acc 0.883
+
+trained in 4.7 minutes
+train accuracy 99.8%
+test  accuracy 88.3%
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\run_curves.png
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\run_confusion.png
+worst_examples is not written yet (Problem 5), so there is no run_worst.png this time
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\run_model.pt
+
+One line for your experiment table:
+| run | ImageNet | all layers | 10 | 0.0001 | 11,178,564 | 99.8% | 88.3% |
+
+To put this model on your web page: python src/export_web.py --tag run

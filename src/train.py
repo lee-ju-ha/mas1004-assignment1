@@ -35,7 +35,17 @@ def build_model(num_classes, pretrained=True, freeze=False):
     Do not put a softmax at the end. The loss function adds it for you, and the
     web page adds it for you.
     """
-    raise NotImplementedError("Problem 3: fill in build_model")
+    from torchvision.models import ResNet18_Weights, resnet18
+
+    weights = ResNet18_Weights.IMAGENET1K_V1 if pretrained else None
+    model = resnet18(weights=weights)
+    model.fc = nn.Linear(model.fc.in_features, num_classes)
+
+    if freeze:
+        for name, parameter in model.named_parameters():
+            parameter.requires_grad = name.startswith("fc.")
+
+    return model
 
 
 def train(model, X_train, y_train, X_test, y_test,
@@ -78,7 +88,65 @@ def train(model, X_train, y_train, X_test, y_test,
     The model is trained in place. When this function returns, `model` is the
     trained one, and it is left on the device it was trained on.
     """
-    raise NotImplementedError("Problem 3: fill in train")
+    if batch_size < 1:
+        raise ValueError("batch_size must be at least 1")
+    if len(X_train) == 0 or len(X_test) == 0:
+        raise ValueError("training and test sets must both contain images")
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
+    X_train = torch.as_tensor(X_train, dtype=torch.float32)
+    y_train = torch.as_tensor(y_train, dtype=torch.int64)
+    X_test = torch.as_tensor(X_test, dtype=torch.float32)
+    y_test = torch.as_tensor(y_test, dtype=torch.int64)
+
+    criterion = nn.CrossEntropyLoss()
+    parameters = [parameter for parameter in model.parameters()
+                  if parameter.requires_grad]
+    optimiser = torch.optim.Adam(parameters, lr=lr)
+    history = {key: [] for key in ("train_loss", "train_acc", "test_loss", "test_acc")}
+
+    for epoch in range(epochs):
+        model.train()
+        order = torch.randperm(len(X_train))
+        train_loss = 0.0
+        train_correct = 0
+
+        for indices in order.split(batch_size):
+            images = X_train[indices].to(device)
+            labels = y_train[indices].to(device)
+            optimiser.zero_grad()
+            logits = model(images)
+            loss = criterion(logits, labels)
+            loss.backward()
+            optimiser.step()
+            train_loss += loss.item() * len(indices)
+            train_correct += (logits.argmax(dim=1) == labels).sum().item()
+
+        model.eval()
+        test_loss = 0.0
+        test_correct = 0
+        with torch.no_grad():
+            for start in range(0, len(X_test), batch_size):
+                images = X_test[start:start + batch_size].to(device)
+                labels = y_test[start:start + batch_size].to(device)
+                logits = model(images)
+                test_loss += criterion(logits, labels).item() * len(labels)
+                test_correct += (logits.argmax(dim=1) == labels).sum().item()
+
+        history["train_loss"].append(train_loss / len(X_train))
+        history["train_acc"].append(train_correct / len(X_train))
+        history["test_loss"].append(test_loss / len(X_test))
+        history["test_acc"].append(test_correct / len(X_test))
+        print(
+            f"Epoch {epoch + 1}/{epochs}: "
+            f"train loss {history['train_loss'][-1]:.4f}, "
+            f"train acc {history['train_acc'][-1]:.3f}, "
+            f"test loss {history['test_loss'][-1]:.4f}, "
+            f"test acc {history['test_acc'][-1]:.3f}"
+        )
+
+    return history
 
 
 def count_trainable(model):

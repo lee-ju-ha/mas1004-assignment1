@@ -1,0 +1,31 @@
+reading C:\Users\juha9\Documents\mas1004-assignment1\data\clean
+600 images, 4 classes, read in 17 s
+  cleaning_brush           150
+  hair_brush               150
+  shoe_brush               150
+  tooth_brush              150
+training on 480, testing on 120
+model has 11,178,564 parameters, 2,052 of them will be trained
+Epoch 1/10: train loss 1.2380, train acc 0.463, test loss 0.9399, test acc 0.717
+Epoch 2/10: train loss 0.8392, train acc 0.740, test loss 0.6872, test acc 0.783
+Epoch 3/10: train loss 0.6053, train acc 0.833, test loss 0.5746, test acc 0.783
+Epoch 4/10: train loss 0.5212, train acc 0.829, test loss 0.4995, test acc 0.858
+Epoch 5/10: train loss 0.4485, train acc 0.873, test loss 0.4447, test acc 0.808
+Epoch 6/10: train loss 0.4158, train acc 0.885, test loss 0.4353, test acc 0.850
+Epoch 7/10: train loss 0.3557, train acc 0.902, test loss 0.3697, test acc 0.892
+Epoch 8/10: train loss 0.3356, train acc 0.912, test loss 0.3777, test acc 0.867
+Epoch 9/10: train loss 0.3113, train acc 0.915, test loss 0.3346, test acc 0.883
+Epoch 10/10: train loss 0.2875, train acc 0.917, test loss 0.3302, test acc 0.883
+
+trained in 2.0 minutes
+train accuracy 94.6%
+test  accuracy 88.3%
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\frozen_curves.png
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\frozen_confusion.png
+worst_examples is not written yet (Problem 5), so there is no frozen_worst.png this time
+wrote C:\Users\juha9\Documents\mas1004-assignment1\results\frozen_model.pt
+
+One line for your experiment table:
+| frozen | ImageNet | last layer | 10 | 0.001 | 2,052 | 94.6% | 88.3% |
+
+To put this model on your web page: python src/export_web.py --tag frozen

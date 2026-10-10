@@ -53,18 +53,27 @@ thing you care about.}
 \toprule
 tag & start & trained & epochs & lr & trainable parameters & train acc. & test acc. \\
 \midrule
-\multicolumn{8}{l}{\fillin{one row per run, as run.py printed it}} \\
+run & ImageNet & all layers & 10 & 0.0001 & 11,178,564 & 99.8\% & 88.3\% \\
+scratch & random & all layers & 10 & 0.0001 & 11,178,564 & 99.6\% & 65.0\% \\
+frozen & ImageNet & last layer & 10 & 0.001 & 2,052 & 94.6\% & 88.3\% \\
+custom & ImageNet & all layers & 15 & 2e-06 & 11,178,564 & 72.5\% & 60.8\% \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \picturefile{figures/run_curves.png}
+\picturefile{figures/scratch_curves.png}
+\picturefile{figures/frozen_curves.png}
+\picturefile{figures/custom_curves.png}
 
 \fillin{Did the loss go down? Did it keep going down, or flatten out?}
 
 \fillin{The gap between train and test accuracy, and what it means.}
 
 \begin{center}\picturefile[0.5\linewidth]{figures/run_confusion.png}\end{center}
+\begin{center}\picturefile[0.5\linewidth]{figures/scratch_confusion.png}\end{center}
+\begin{center}\picturefile[0.5\linewidth]{figures/frozen_confusion.png}\end{center}
+\begin{center}\picturefile[0.5\linewidth]{figures/custom_confusion.png}\end{center}
 
 \fillin{Which two categories it mixes up most, and whether that surprised you.}
 
@@ -77,15 +86,18 @@ random numbers, and why you think that is.}
 \outputfile{outputs/run_output.txt}
 \outputfile{outputs/scratch_output.txt}
 \outputfile{outputs/frozen_output.txt}
-% One more line like these for the setting you chose, named by its tag.
-\fillin{the output of the run with your own setting}
+\outputfile{outputs/custom_output.txt}
 
 % ---------------------------------------------------------------------------
 \section*{Problem 4. Cleaning}
 
 \subsection*{My rule}
-\fillin{Your rule, in one or two sentences, as you wrote it before you
-started.}
+\begin{description}
+\item[\texttt{tooth brush}] 솔이 몸체보다 두껍지 않고 몸체보다 훨씬 작아야 한다. 솔의 반대편은 평면이어야 하며, 솔이 동그란 원통 모양인 것은 속하지 않는다.
+\item[\texttt{hair brush}] 솔과 몸체의 비율이 1:1 정도로 비슷하다. 솔이 한쪽 면에만 있는 종류와 원통 모양으로 동그랗게 생긴 종류가 있으며, 솔 사이에 간격이 있다.
+\item[\texttt{cleaning brush}] 손잡이가 있고, 솔보다 몸체의 길이가 길다. 손잡이에 몸체와 다른 색의 고무패킹이 있는 경우가 있으며, 솔과 몸체가 이어지는 부분은 약 130도 정도로 휘어져 있다.
+\item[\texttt{shoe brush}] 몸체 전체에 솔이 있는 경우가 많다. 나무 재질이 연상되는 갈색 몸체를 가지며 솔은 일반적으로 검정색이다.
+\end{description}
 
 \subsection*{Three kinds of junk}
 \fillin{Three kinds of junk, with one picture of each.}
@@ -95,17 +107,30 @@ started.}
 \subsection*{What I removed}
 \outputfile{outputs/clean_count.txt}
 
-\fillin{How many near copies it found, and what you did with them.}
+The check found 35 pairs of near copies. I moved 30 right-side images to
+\texttt{data/removed/}, keeping one representative from each connected group.
+I kept \texttt{shoe\_brush/0049.jpg} because its left-side copy,
+\texttt{cleaning\_brush/0091.jpg}, was removed as a mislabeled shoe brush.
 
-\fillin{Of the first 20 suspects in each class, how many you removed. Whether
-the suspects included junk you had missed, and whether you found junk it did
-not list.}
+Among the first 20 suspects, I removed 5 \texttt{cleaning\_brush}, 1
+\texttt{hair\_brush}, 5 \texttt{shoe\_brush}, and 0 \texttt{tooth\_brush}
+images. Reviewing the full Step 3 sheets also revealed six more cleaning-brush
+images outside the 32 shown on the suspect sheet:
+\texttt{0031.jpg}, \texttt{0112.jpg}, \texttt{0128.jpg}, \texttt{0134.jpg},
+\texttt{0137.jpg}, and \texttt{0150.jpg}.
 
 \subsection*{Before and after cleaning}
+\outputfile{outputs/clean_output.txt}
+\picturefile{figures/clean_curves.png}
+\begin{center}\picturefile[0.5\linewidth]{figures/clean_confusion.png}\end{center}
+\picturefile{figures/clean_worst.png}
 \outputfile{outputs/compare.txt}
 
-\fillin{The test accuracy and the accuracy on your new images, before and
-after. If a number went down, why you think it did.}
+The downloaded-test accuracy changed from 88.3\% (\texttt{run}) to 93.6\%
+(\texttt{clean}). On the same 25 new images, \texttt{run} got 19 correct
+(76.0\%) and \texttt{clean} got 21 correct (84.0\%). The new-image comparison
+is fairer because both models are measured on exactly the same images, while
+cleaning changed the downloaded test set.
 
 % ---------------------------------------------------------------------------
 \section*{Problem 5. Images from a new source}
@@ -114,9 +139,10 @@ after. If a number went down, why you think it did.}
 among your downloads.}
 
 \outputfile{outputs/overlap.txt}
+\outputfile{outputs/check.txt}
 
-\fillin{The accuracy on your downloaded test set and on your new images, side
-by side.}
+The cleaned model scored 93.6\% on the downloaded test set and 84.0\% on the
+new images (21/25), as printed by the training and check outputs.
 
 \fillin{Five mistakes it was confident about, with the pictures. For each one,
 what in the image you think pushed it the wrong way.}

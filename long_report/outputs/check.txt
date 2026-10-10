@@ -1,0 +1,52 @@
+MAS1004 Assignment 1, checking your work
+
+Training images  (C:\Users\juha9\Documents\mas1004-assignment1\data\clean)
+--------------------------------------------------------------------------
+  cleaning_brush                 127 images
+  hair_brush                     138 images
+  shoe_brush                     137 images
+  tooth_brush                    146 images
+
+Your images from a new source  (C:\Users\juha9\Documents\mas1004-assignment1\data\new_images)
+---------------------------------------------------------------------------------------------
+  cleaning_brush                   7 images
+  hair_brush                       6 images
+  shoe_brush                       5 images
+  tooth_brush                      7 images
+
+The same image appearing twice
+------------------------------
+  ok       no file appears twice byte for byte. Near copies (the same picture resized or re-saved) are only found by `python src/clean.py suspects` and `python src/clean.py overlap`.
+
+The model you exported for the web page
+---------------------------------------
+  ok       4 classes: cleaning_brush, hair_brush, shoe_brush, tooth_brush
+  ok       model.onnx is 44.8 MB, 11,178,564 parameters
+           input [1, 3, 224, 224], prepared as: shorter side 256, centre 224 x 224, mean [0.485, 0.456, 0.406], std [0.229, 0.224, 0.225]
+
+Does the exported model give the answers Python gave?
+-----------------------------------------------------
+  ok       yes, they agree (largest gap 0.0000)
+
+Your images from a new source  (C:\Users\juha9\Documents\mas1004-assignment1\data\new_images)
+---------------------------------------------------------------------------------------------
+
+  accuracy on your new images: 21/25 = 84.0%
+
+  rows are what it really is, columns are what the model said
+                     cleaning hair_bru shoe_bru tooth_br
+    cleaning_brush          6        0        0        1
+    hair_brush              1        3        2        0
+    shoe_brush              0        0        5        0
+    tooth_brush             0        0        0        7
+
+  the mistakes it was most sure about:
+    KakaoTalk_20261010_151845929_02.jpg said cleaning_brush (98%), really hair_brush
+    KakaoTalk_20261010_152413330_01.jpg said tooth_brush (95%), really cleaning_brush
+    KakaoTalk_20261010_151845929.jpg said shoe_brush (64%), really hair_brush
+    KakaoTalk_20261010_151845929_01.jpg said shoe_brush (44%), really hair_brush
+
+Summary
+-------
+  nothing is broken
+
